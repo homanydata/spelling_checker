@@ -1,5 +1,5 @@
 ALLOWED_TYPES = ['txt', 'docx', 'doc']
-DATASET_PATH = './dataset.txt'
+DATASET_PATH = './cleaned_dataset.txt'
 
 
 def create_warning(mistake: str, suggestions: list[str]) -> str:

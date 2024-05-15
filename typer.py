@@ -12,7 +12,7 @@ def copy_text() -> None:
 def validate_last_word(curr_text) -> bool:
     if curr_text and curr_text[-1] == ' ':
         word = curr_text.split(' ')[-2]
-        if not master.check_spelling(word):
+        if all(c.isalpha() for c in word) and not master.check_spelling(word):
             suggestions = master.suggest(word)
             display_warning(word, suggestions)
     return True
