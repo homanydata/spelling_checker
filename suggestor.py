@@ -25,7 +25,7 @@ class LanguageMaster:
 
     def check_spelling(self, word: str) -> bool:
         return word in self.dataset
-    
+
     def get_mistakes(self, text: str) -> list[str]:
         # remove everything other than letters and spaces
         cleaned_text = ''.join((character for character in text if character.isalpha() or character in '\n '))
@@ -40,6 +40,7 @@ class LanguageMaster:
         mistakes = self.get_mistakes(text)
         # replace every mistake by its most similar suggestion
         for mistake in mistakes:
-            correction = self.suggest(word=mistake, n=1)[0]
-            corrected_text = corrected_text.replace(mistake, correction)
+            corrections = self.suggest(word=mistake, n=1)
+            if corrections:
+                corrected_text = corrected_text.replace(f' {mistake} ', f' {corrections[0]} ')
         return corrected_text

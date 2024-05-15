@@ -45,7 +45,7 @@ def read_file(file_path: str) -> str:
         else:
             with open(file_path, 'r', encoding='utf-8') as file:
                 contents = file.read()
-        return contents
+        return contents.lower()
     except:
         raise RuntimeError(ERRORS.ERROR_READING_FILE(file_path))
 
