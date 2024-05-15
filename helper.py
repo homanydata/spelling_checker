@@ -6,13 +6,14 @@ def create_warning(mistake: str, suggestions: list[str]) -> str:
     """
     This method creates a string represeting a warning, given a mistake and suggestions
     """
-    return f'Mispelled: {mistake}, did you mean {" or ".join(suggestions)}'
+    suggestions = [f'"{s}"' for s in suggestions]
+    return f'Mispelled "{mistake}", did you mean {" or ".join(suggestions)}'
 
 class MSGS:
     HELLO_MSG = "Hello my friend, hope you're fine"
     TITLE = "Spelling Checker"
     COPY_BUTTON = 'Copy'
-    TYPE_IN_LABEL = 'type whatever you want'
+    TYPE_IN_LABEL = 'Type whatever you want'
 
 
 class ERRORS:

@@ -33,6 +33,3 @@ File handler: done
     - save to a text file
     - save to word doc file
     - apply suggestions to a file
-
-initial version written, all functions filled with code
-needs review, testing, any correction

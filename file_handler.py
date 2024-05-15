@@ -23,7 +23,7 @@ def get_parent_path(file_path: str) -> str:
 
 
 def get_file_name(file_path: str) -> str:
-    return os.path.basename(file_path)
+    return os.path.basename(file_path).split('.')[0]
 
 
 def is_document(file_path: str) -> bool:
@@ -33,7 +33,7 @@ def is_document(file_path: str) -> bool:
 
 def read_dataset() -> list[str]:
     contents = read_file(DATASET_PATH)
-    words = contents.replace('\n',' ').split(' ')
+    words = contents.lower().replace('\n',' ').split(' ')
     return words
 
 

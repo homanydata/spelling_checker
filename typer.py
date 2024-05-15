@@ -9,15 +9,10 @@ def copy_text() -> None:
     pyperclip.copy(text)
 
 
-def highlight_mistake(mistake: str) -> None:
-    pass
-
-
 def validate_last_word(curr_text) -> bool:
     if curr_text and curr_text[-1] == ' ':
-        word = curr_text.split(' ')[-1]
+        word = curr_text.split(' ')[-2]
         if not master.check_spelling(word):
-            highlight_mistake(word)
             suggestions = master.suggest(word)
             display_warning(word, suggestions)
     return True
@@ -25,25 +20,22 @@ def validate_last_word(curr_text) -> bool:
 
 def display_warning(mistake: str, suggestions: list[str]) -> None:
     prev = suggestion_label.cget('text')
-    new = prev + '\n' if prev else '' + create_warning(mistake, suggestions)
+    new = prev + ('\n' if prev else '') + create_warning(mistake, suggestions)
     suggestion_label.config(text=new)
 
 
-def handle_exception(error_message: str) -> None:
-    pass
-
-
 # Create the main window
+FONT = ('Solway', 18)
 master = LanguageMaster()
 root = tk.Tk()
-root.geometry('800x600')
+root.geometry('1000x600')
 root.title(MSGS.TITLE)
 
 # Create and place a label widget
-tk.Label(root, text=MSGS.TYPE_IN_LABEL).pack(pady=15, padx=15)
+tk.Label(root, text=MSGS.TYPE_IN_LABEL, font=FONT).pack(pady=15, padx=15)
 
 # Create and place a text entry widget
-text_entry = tk.Entry(root, validate='key', validatecommand=(root.register(validate_last_word),'%P'))
+text_entry = tk.Entry(root, width=50, font=FONT, validate='key', validatecommand=(root.register(validate_last_word),'%P'))
 text_entry.pack(pady=30)
 
 # Create and place a button widget

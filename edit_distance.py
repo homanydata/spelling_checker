@@ -87,7 +87,6 @@ def edit_distance(word1: str, word2: str) -> int:
                 dp[i][j+1] + 1 # delete
             )
 
-    display_edit_table(dp, word1, word2)
     return dp[0][0]
 
 

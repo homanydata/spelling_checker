@@ -42,15 +42,19 @@ def get_int_from_user(msg, mini=None, maxi=None):
     return get_int_from_user(msg, mini, maxi)
 
 
+def isnumeric(s: str) -> bool:
+    return all(character.isdigit() for character in s)
+
+
 def get_user_choice(all_choices: dict) -> int:
-    choices_keys = all_choices.keys()
-    all_choices = all_choices.values()
+    choices_keys = list(all_choices.keys())
+    all_choices = list(all_choices.values())
     n = len(all_choices)
     # create the question to be asked to user
     msg = f'Choose one of the options below (insert the number you want)\n'
     msg += ''.join([f'{i+1}) {c}\n' for i, c in enumerate(all_choices)])
 
-    chosen_index = get_int_from_user(msg=msg, mini=1, maxi=n)
+    chosen_index = get_int_from_user(msg=msg, mini=1, maxi=n) - 1
     return choices_keys[chosen_index]
 
 
@@ -94,10 +98,10 @@ def save_warnings(file_path: str, text: str, master: LanguageMaster) -> None:
     mistakes = master.get_mistakes(text)
     for mistake in mistakes:
         suggestions = master.suggest(word=mistake)
-        result += create_warning(mistake, suggestions)
+        result += create_warning(mistake, suggestions) + '\n'
     file_name = get_file_name(file_path)
     path = get_parent_path(file_path)
-    save_to_file(f'{path}\\{file_name}_review.txt')
+    save_to_file(f'{path}\\{file_name}_review.txt', text=result)
 
 
 if __name__ == '__main__':
