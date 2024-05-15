@@ -1,0 +1,34 @@
+edit distance module:
+    - calc edit distance for 2 given words if below a given limit
+
+
+typer:
+    - show live typing in some GUI
+    - display warnings and suggestions on spelling mistakes
+
+
+main:
+    a module for checking/correcting existing files:
+    - interact with user, (ask for file path and what option he wants)
+    - output result if needed
+    - success or failure with proper exception handling
+
+
+Suggestor:
+    - initiate: save dataset as attribute
+    - suggest n most similar words to a given spelling mistakes
+    - check_spelling checks if a given word is correct, if in dataset
+    - create_correction for a given long string (many words)
+
+
+i dont know where to put:
+    - create a string represeting a warning, given a mistake and suggestions
+    - MSGS constants
+
+
+File handler:
+    - read dataset text file
+    - read existing file (text or word doc)
+    - save to a text file
+    - save to word doc file
+    - apply suggestions to a file
