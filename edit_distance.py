@@ -63,8 +63,8 @@ def display_edit_table(array2d: list[list[int]], w1: str, w2: str) -> None:
         print(*row, sep=' | ')
         print(' ' * 3 + '_' * (4 * len(row) - 2))
 
-
-def edit_distance(word1: str, word2: str, replace_is_double_cost: bool=False) -> int:
+# actually this is not totally ready to use, we need to add the distance limit
+def edit_distance(word1: str, word2: str) -> int:
     """
     Args:
         - word1 (str)
@@ -82,7 +82,7 @@ def edit_distance(word1: str, word2: str, replace_is_double_cost: bool=False) ->
         for j in range(len(word2)-1, -1, -1):
             # find edit_distance of the subproblem & add cost if needed
             dp[i][j] = min(
-                dp[i+1][j+1] + (1 + int(replace_is_double_cost)) * int(word1[i] != word2[j]), # add cost for replacing letter if they are not same
+                dp[i+1][j+1] + int(word1[i] != word2[j]), # add cost for replacing letter if they are not same
                 dp[i+1][j] + 1, # insert
                 dp[i][j+1] + 1 # delete
             )
